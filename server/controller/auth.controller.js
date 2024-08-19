@@ -59,5 +59,12 @@ const signUp = async (req, res) => {
     return res.status(400).json({ message: error.message });
   }
 };
-const logOut = async (req, res) => {};
+const logOut = async (req, res) => {
+  try {
+    res.cookie("access_token", "", { maxAge: 0 });
+    res.status(200).json({ message: "User logged out successfully" });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
 module.exports = { logIn, signUp, logOut };
