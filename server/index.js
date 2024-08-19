@@ -6,6 +6,7 @@ const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 const authRoute = require("./routes/auth.route");
 const messageRoute = require("./routes/message.route");
+const userRoute = require("./routes/user.route");
 dotenv.config();
 const app = express();
 app.use(cookieParser());
@@ -28,6 +29,7 @@ mongoose
 
 app.use("/api/auth", authRoute);
 app.use("/api/message", messageRoute);
+app.use("/api/user", userRoute);
 
 app.listen(PORT, () => {
   console.log("Server is running on port: " + PORT);
