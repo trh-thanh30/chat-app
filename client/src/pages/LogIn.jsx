@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 /* eslint-disable react/no-unescaped-entities */
 export default function LogIn() {
   return (
@@ -30,12 +32,12 @@ export default function LogIn() {
             />
           </div>
 
-          <a
-            href="#"
+          <Link
+            to={"/sign-up"}
             className="inline-block mt-2 text-sm hover:underline hover:text-blue-600"
           >
             Don't have account?
-          </a>
+          </Link>
 
           <div className="">
             <button className="mt-2 btn btn-block btn-sm">Login</button>
