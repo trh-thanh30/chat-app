@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
-
+const authRoute = require("./routes/auth.route");
 dotenv.config();
 
 const app = express();
@@ -27,7 +27,7 @@ mongoose
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.log(err));
 
-;
+app.use("/api/auth", authRoute);
 
 app.listen(PORT, () => {
   console.log("Server is running on port: " + PORT);
