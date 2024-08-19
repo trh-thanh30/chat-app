@@ -1,7 +1,27 @@
 const User = require("../models/user.models");
 const bcryptjs = require("bcryptjs");
 const verifyToken = require("../utils/generateToken");
-const logIn = async (req, res) => {};
+const logIn = async (req, res) => {
+  const { username, password } = req.body;
+  if (!username || !password)
+    return res.status(400).json({ message: "All fields are required" });
+  const user = await User.findOne({ username });
+  if (!user) return res.status(400).json({ message: "User does not exist" });
+  const isPasswordCorrect = bcryptjs.compareSync(password, user.password);
+  if (!isPasswordCorrect)
+    return res.status(400).json({ message: "Invalid credentials" });
+  try {
+    verifyToken(user._id, res);
+    res.status(200).json({
+      _id: user._id,
+      username: user.username,
+      fullName: user.fullName,
+      profilePic: user.profilePic,
+    });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
 const signUp = async (req, res) => {
   try {
     const { fullName, username, password, confirmPassword, gender } = req.body;
