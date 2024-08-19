@@ -5,13 +5,11 @@ const dotenv = require("dotenv");
 const morgan = require("morgan");
 const cookieParser = require("cookie-parser");
 const authRoute = require("./routes/auth.route");
+const messageRoute = require("./routes/message.route");
 dotenv.config();
-
 const app = express();
-const PORT = process.env.PORT || 5000;
-
-app.use(morgan("dev"));
 app.use(cookieParser());
+app.use(morgan("dev"));
 app.use(express.json());
 app.use(
   cors({
@@ -20,6 +18,7 @@ app.use(
   })
 );
 
+const PORT = process.env.PORT || 5000;
 mongoose
   .connect(process.env.MONGODB_URI, {
     dbName: "chat-app",
@@ -28,6 +27,7 @@ mongoose
   .catch((err) => console.log(err));
 
 app.use("/api/auth", authRoute);
+app.use("/api/message", messageRoute);
 
 app.listen(PORT, () => {
   console.log("Server is running on port: " + PORT);
