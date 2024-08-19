@@ -1,3 +1,5 @@
+import GenderCheckBox from "../components/GenderCheckBox";
+
 export default function SignUp() {
   return (
     <div className="flex flex-col items-center justify-center mx-auto min-w-96">
@@ -50,7 +52,7 @@ export default function SignUp() {
               className="w-full h-10 input input-bordered"
             />
           </div>
-
+          <GenderCheckBox></GenderCheckBox>
           <a
             href="#"
             className="inline-block mt-2 text-sm hover:underline hover:text-blue-600"
