@@ -97,7 +97,7 @@ const SignUp = () => {
           />
 
           <Link
-            to={"/login"}
+            to={"/log-in"}
             className="inline-block mt-2 text-sm hover:underline hover:text-blue-600"
             href="#"
           >
